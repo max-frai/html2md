@@ -163,7 +163,7 @@ fn walk(
                     "sub" | "sup" => Box::new(IdentityHandler::default()),
                     // tables, handled fully internally as markdown can't have nested content in tables
                     // supports only single tables as of now
-                    "table" => Box::new(TableHandler::default()),
+                    // "table" => Box::new(TableHandler::default()),
                     "iframe" => Box::new(IframeHandler::default()),
                     // other
                     "html" | "head" | "body" => Box::new(DummyHandler::default()),
