@@ -48,7 +48,7 @@ impl TagHandler for IframeHandler {
         if let Some(capture) = YOUTUBE_PATTERN.captures(&src) {
             let media_id = capture.get(1).unwrap();
             let base = base64::encode(media_id.as_str()).replace("=", "");
-            printer.append_str(&format!("[(YOUTUBE {})", base));
+            printer.append_str(&format!("(YOUTUBE {})", base));
             return;
         }
 
