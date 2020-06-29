@@ -54,6 +54,8 @@ impl TagHandler for ImgHandler {
                 img_url = utf8_percent_encode(&img_url, FRAGMENT).to_string();
             }
 
+            img_url = urlencoding::encode(&img_url);
+
             printer.append_str(&format!(
                 "![{}]({})",
                 alt.unwrap_or_default(),
