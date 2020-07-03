@@ -16,6 +16,7 @@ lazy_static! {
     /// * `https://www.youtube.com/embed/5yo6exIypkY`
     /// * `https://www.youtube.com/embed/TXm6IXrbQuM`
     static ref YOUTUBE_PATTERN : Regex = Regex::new(r"www\.youtube\.com/embed/([-\w]+)").unwrap();
+    static ref SOUNDCLOUD_PATTERN : Regex = Regex::new(r"w\.soundcloud\.com").unwrap();
 
     /// Pattern that detects iframes with Instagram embedded photos
     /// Examples:
@@ -49,6 +50,12 @@ impl TagHandler for IframeHandler {
             let media_id = capture.get(1).unwrap();
             let base = base64::encode(media_id.as_str()).replace("=", "");
             printer.append_str(&format!("(YOUTUBE {})", base));
+            return;
+        }
+
+        if let Some(_) = SOUNDCLOUD_PATTERN.captures(&src) {
+            let base = base64::encode(src).replace("=", "");
+            printer.append_str(&format!("(SOUNDCLOUD {})", base));
             return;
         }
 
