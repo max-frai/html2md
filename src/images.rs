@@ -17,7 +17,7 @@ pub(super) struct ImgHandler;
 impl TagHandler for ImgHandler {
     fn handle(&mut self, tag: &Handle, printer: &mut StructuredPrinter) {
         // try to extract attrs
-        let src = get_tag_attr(tag, "src");
+        let src = get_tag_attr(tag, "src").or(get_tag_attr(tag, "data-lazy-block-src"));
         let alt = get_tag_attr(tag, "alt");
         let title = get_tag_attr(tag, "title");
         let height = get_tag_attr(tag, "height");
