@@ -46,18 +46,18 @@ impl TagHandler for IframeHandler {
 
         let src = src.unwrap();
 
-        if let Some(capture) = YOUTUBE_PATTERN.captures(&src) {
-            let media_id = capture.get(1).unwrap();
-            let base = base64::encode(media_id.as_str()).replace("=", "");
-            printer.append_str(&format!("(YOUTUBE {})", base));
-            return;
-        }
+        // if let Some(capture) = YOUTUBE_PATTERN.captures(&src) {
+        //     let media_id = capture.get(1).unwrap();
+        //     let base = base64::encode(media_id.as_str()).replace("=", "");
+        //     printer.append_str(&format!("(YOUTUBE {})", base));
+        //     return;
+        // }
 
-        if let Some(_) = SOUNDCLOUD_PATTERN.captures(&src) {
-            let base = base64::encode(src).replace("=", "");
-            printer.append_str(&format!("(SOUNDCLOUD {})", base));
-            return;
-        }
+        // if let Some(_) = SOUNDCLOUD_PATTERN.captures(&src) {
+        //     let base = base64::encode(src).replace("=", "");
+        //     printer.append_str(&format!("(SOUNDCLOUD {})", base));
+        //     return;
+        // }
 
         if let Some(capture) = INSTAGRAM_PATTERN.captures(&src) {
             let media_id = capture.get(1).unwrap();
